@@ -7,6 +7,8 @@ $Ps1Pfad = Join-Path -Path $PSScriptRoot -ChildPath "DSCBeispiel01.ps1"
 
 .$Ps1Pfad
 
+Set-Location -Path $PSScriptRoot
+
 # Zur Kontrolle - die Configuration CreateProfileDir ist mit dabei
 Get-Command -CommandType Configuration
 
@@ -17,11 +19,13 @@ CreateProfileDir -Verbose
 
 # Übertragen im Push-Modus an den Node Win10A
 
-$Pw = ConvertTo-SecureString -String "demo+1234" -AsPlainText -Force
-$Username = "pmhub\Administrator"
-$PSCred = [PSCredential]::New($Username, $Pw)
+# $Pw = ConvertTo-SecureString -String "demo+12345678" -AsPlainText -Force
+# $Username = "poshadmin"
+# $PSCred = [PSCredential]::New($Username, $Pw)
 
-Set-Location -Path $PSScriptRoot
+# Alternativ, wenn zuvor das Skript SacePsCredentials.ps1 einmal ausgeführt wurde
+$XmlPfad = join-Path -Path $PSScriptRoot -ChildPath "PoshadminCreds.xml"
+$PSCred = Import-CliXml -Path $XmlPfad
 
 # Sollte ein LCM für den Pull-Modus konfiguriert sein, ist der Force-Parameter für einen Push erforderlich
 Start-DscConfiguration -ComputerName Win10A -Credential $PSCred -Path .\CreateProfileDir -Wait -Verbose -Force

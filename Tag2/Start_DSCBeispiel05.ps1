@@ -26,8 +26,8 @@ CreateProfileSkript -Verbose -ConfigurationData $ConfigData
 
 # Übertragen im Push-Modus an den Node Win10A
 
-$Pw = ConvertTo-SecureString -String "demo+1234" -AsPlainText -Force
-$Username = "pmhub\Administrator"
+$Pw = ConvertTo-SecureString -String "demo+12345678" -AsPlainText -Force
+$Username = "poshadmin"
 $PSCred = [PSCredential]::New($Username, $Pw)
 
 Set-Location -Path $PSScriptRoot
