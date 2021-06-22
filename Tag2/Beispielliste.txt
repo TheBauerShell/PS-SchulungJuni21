@@ -1,0 +1,40 @@
+===============================================
+HalloDCS01 - das einfachste mögliche Beispiel
+===============================================
+
+Anlegen eines WindowsPowerShell-Verzeichnisses
+
+===============================================
+HalloDCS02 - Erste Erweiterung
+===============================================
+
+Anlegen eines WindowsPowerShell-Verzeichnisses und einer Profile.ps1
+
+===============================================
+HalloDCS03 - $PSComputername statt festem Namen
+===============================================
+
+
+===============================================
+HalloDCS04 - Auslagern des Computernamens und des Inhalts der Ps1-Datei in die ConfigurationData
+===============================================
+
+===============================================
+HalloDCS05 - Mehrere Computernamen in den ConfigurationData
+===============================================
+
+Als Übung:
+
+>Lokalen Computernamen anlegen
+>Welche Ressource?
+>Was kann sie?
+>Wie muss sie in eine Konfiguration eingebaut werden?
+>Wo kommen die Daten her
+
+===============================================
+HalloDCS06 - Features installieren und Steuerung über Rollen, die in den Configurationdata festgelegt werden
+===============================================
+
+
+
+
