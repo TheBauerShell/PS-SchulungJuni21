@@ -9,16 +9,17 @@ Configuration CreateProfileSkript
 
     node $AllNodes.NodeName
     {
+      
         File ProfileDir
         {
           Ensure = "Present"
-          DestinationPath = "C:\Users\Administrator\Documents\WindowsPowerShell\ProfileNeu"
+          DestinationPath = "C:\Users\$($Node.Username)\Documents\WindowsPowerShell\ProfileNeu"
           Type = "Directory"
         }
         File ProfileSkript
         {
           Ensure = "Present"
-          DestinationPath = "C:\Users\Administrator\Documents\WindowsPowerShell\ProfileNeu\Profile.ps1"
+          DestinationPath = "C:\Users\$($Node.Username)\Documents\WindowsPowerShell\ProfileNeu\Profile.ps1"
           Type = "File"
           Contents = $Node.Ps1Content
           DependsOn = "[File]ProfileDir"

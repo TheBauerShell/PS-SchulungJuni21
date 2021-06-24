@@ -12,10 +12,12 @@ $ConfigData = @{
     AllNodes = @(
         @{
             NodeName = "Win10A"
+            Username = "poshadminx"
             PS1Content = "Alles klar mit Configdaten für Win10A"
         },
         @{
             NodeName = "Win10B"
+            Username = "poshadmin"
             PS1Content = "Alles klar mit Configdaten für Win10B"
         }
     )
@@ -26,9 +28,8 @@ CreateProfileSkript -Verbose -ConfigurationData $ConfigData
 
 # Übertragen im Push-Modus an den Node Win10A
 
-$Pw = ConvertTo-SecureString -String "demo+12345678" -AsPlainText -Force
-$Username = "poshadmin"
-$PSCred = [PSCredential]::New($Username, $Pw)
+$XmlPfad = join-Path -Path $PSScriptRoot -ChildPath "PoshadminCreds.xml"
+$PSCred = Import-CliXml -Path $XmlPfad
 
 Set-Location -Path $PSScriptRoot
 
