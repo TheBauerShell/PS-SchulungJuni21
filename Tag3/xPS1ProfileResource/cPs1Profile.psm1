@@ -23,10 +23,10 @@ class xPSProfileResource
     [DSCProperty(Key)]
     [ProfileType]$ProfileType
 
-    [DSCProperty(Mandatory)]
+    [DSCProperty()]
     [String]$Username
 
-    [DSCProperty(Mandatory)]
+    [DSCProperty()]
     [String]$Hostname
 
     [DSCProperty(Mandatory)]
@@ -76,10 +76,10 @@ class xPSProfileResource
         switch($this.ProfileType)
         {
             CurrentUserAllHosts { 
-                Set-Item -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\Profile.ps1" -Value ('$Host.PrivateData.ErrorBackgroundColor = {0}' -f "White")
+                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"White`"")
             }
             CurrentUserCurrentHost {
-                Set-Item -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.hostname)_Profile.ps1" -Value ('$Host.PrivateData.ErrorBackgroundColor = {0}' -f "White")
+                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.hostname)_Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"White`"")
             }
         }
     }
