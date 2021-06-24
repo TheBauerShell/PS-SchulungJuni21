@@ -44,7 +44,7 @@ class xPSProfileResource
         switch($this.ProfileType)
         {
             CurrentUserAllHosts { $Result = Test-Path -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\Profile.ps1" }
-            CurrentUserCurrentHost { $Result = Test-Path -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.hostname)_Profile.ps1" }
+            CurrentUserCurrentHost { $Result = Test-Path -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.Hostname)_Profile.ps1" }
         }
         Return $Result
     }
