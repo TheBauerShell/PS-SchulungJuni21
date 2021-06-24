@@ -10,7 +10,7 @@
 
 function Remove-Number
 {
-    [CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact="Medium")]
+    [CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact="High")]
     param([Int[]]$BaseArray, [Int[]]$RemoveArray)
     foreach($z in $RemoveArray)
     {
@@ -26,9 +26,12 @@ $z1 = 1..10
 $z2 = 3,5,7
 
 # Bei ConfirmPreference=High passiert nichts
-#$ConfirmPreference = "High"
-#Remove-Number $z1 $z2
 
-$ConfirmPreference = "Low"
-Remove-Number $z1 $z2
+$ConfirmPreference = "High"
+$ConfirmModus = $true
+Remove-Number $z1 $z2 -Confirm:$ConfirmModus
+Remove-Number $z1 $z2 -Confirm:$ConfirmModus
+
+#$ConfirmPreference = "Low"
+#Remove-Number $z1 $z2
 
