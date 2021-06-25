@@ -64,7 +64,7 @@ class xPSProfileResource
             }
 
         }
-        return $Result
+        Return $Result
 
     }
 
@@ -76,10 +76,10 @@ class xPSProfileResource
         switch($this.ProfileType)
         {
             CurrentUserAllHosts { 
-                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"White`"")
+                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.hostname)_Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"$($this.ErrorBackgroundColor)`"")
             }
             CurrentUserCurrentHost {
-                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\$($this.hostname)_Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"White`"")
+                Add-Content -Path "C:\Users\$($this.Username)\Documents\WindowsPowershell\Profile.ps1" -Value ("`$Host.PrivateData.ErrorBackgroundColor = " + "`"$($this.ErrorBackgroundColor)`"")
             }
         }
     }

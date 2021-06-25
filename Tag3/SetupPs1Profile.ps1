@@ -13,10 +13,9 @@ configuration CreatePs1Profile
         xPSProfileResource Test
         {
             Ensure = "Present"
-            ProfileType = "CurrentUserAllHosts"
+            ProfileType = "CurrentUserCurrentHost"
             Username = "poshadmin"
-            Hostname = "test1234"
-            ErrorBackgroundColor = "yellow"
+            ErrorBackgroundColor = "Magenta"
         }
     }
 

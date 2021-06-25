@@ -14,7 +14,7 @@ describe "a basic test of the cPs1Profile ressource" {
     # $Psm1Pfad = "C:\Program Files\WindowsPowerShell\Modules\cPs1Profile\0.0.0.1\cPs1Profile.psm1"
     # Import-Module -Name $Psm1Pfad
 
-    it "tests not existing profile file" {
+    it "tests not existing profile file" -Skip  {
         $resource = [xPSProfileResource]::new()
         $resource.username = "pemo"
         $resource.hostname = "test1234"
@@ -22,7 +22,7 @@ describe "a basic test of the cPs1Profile ressource" {
         $resource.test() | Should -be $false
     }
 
-    it "tests existing user profile file" {
+    it "tests existing user profile file" -Skip  {
         $resource = [xPSProfileResource]::new()
         $resource.username = "Poshadmin"
         $resource.profileType = "CurrentUserAllHost"
@@ -30,13 +30,23 @@ describe "a basic test of the cPs1Profile ressource" {
         $resource.test() | Should -be $true
     }
 
-    it "tests existing host profile file" {
+    it "tests existing host profile file" -Skip  {
         $resource = [xPSProfileResource]::new()
         $resource.hostname = "test1234"
-        # $resource.username = "poshadmin"
+        #$resource.username = "poshadmin"
         $resource.profileType = "CurrentUserCurrentHost"
         New-Item -Path "C:\Users\Poshadmin\Documents\WindowsPowershell\test1234_Profile.ps1" -itemtype File -ErrorAction Ignore
         $resource.test() | Should -be $true
+    }
+
+    it "tests creating a profile script" {
+        $resource = [xPSProfileResource]::new()
+        $resource.hostname = "test1234"
+        $resource.username = "poshadmin"
+        $resource.profileType = "CurrentUserCurrentHost"
+        $resource.set()
+        Test-Path -Path "C:\Users\Poshadmin\Documents\WindowsPowershell\test1234_Profile.ps1" | Should -BeTrue
+
     }
 
 }
